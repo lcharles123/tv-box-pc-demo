@@ -1,0 +1,19 @@
+FROM alpine/git AS cloner
+
+WORKDIR /root
+
+git clone https://github.com/lcharles123/hello-debian
+
+
+#FROM alpine:3.8 3 # since base image are the same distro
+
+RUN set -ex && \
+    apk add --no-cache gcc musl-dev
+
+RUN set -ex && \
+    rm -f /usr/libexec/gcc/x86_64-alpine-linux-musl/6.4.0/cc1obj && \
+    rm -f /usr/libexec/gcc/x86_64-alpine-linux-musl/6.4.0/lto1 && \
+    rm -f /usr/libexec/gcc/x86_64-alpine-linux-musl/6.4.0/lto-wrapper && \
+    rm -f /usr/bin/x86_64-alpine-linux-musl-gcj
+
+CMD [ "/bin/sh" ]
