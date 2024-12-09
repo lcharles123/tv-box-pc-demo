@@ -8,6 +8,7 @@ Once you have the name of the package, it can be installed using dpkg by running
 
 The structure of a typical repository for packaging into deb are the following:
 
+```
 xed_2.6.2+ulyana_amd64
 ├── DEBIAN
 │   ├── control
@@ -41,7 +42,8 @@ xed_2.6.2+ulyana_amd64
         │       └── copyright
         └── man
             └── man1
-                └── xed.1.gz
+                └── xed.1.gz 
+```
 
 Observe that the artifacts are disposed in a structured directory tree, and the root location inside the package matches the root of the target filesystem where the package will be installed.
 In this package example, the elements will be placed in the following locations:
@@ -130,10 +132,12 @@ You can use provided Makefile, in this repository to help build each package, `m
 # Examples description:
 In the package-examples folder we have already built packages.
 In the examples folder there are Dockerfiles that represent a container creation, more than that, they are intended to be used in the end-to-end building. They are constructed using Docker best practices like Multi-stage builds. The general stages of a build pipeline are:
+```
 │────────────────────│────────────────────────────────────────│────────────────────────│
 │ get the structured │ build artifacts using the project's    │ do the packaging of the│
 │ source             │ build system                           │ generated artifacts    │
 │────────────────────│────────────────────────────────────────│────────────────────────│
+```
 
 The Dockerfile are a text file that contains commands for building the image, it takes a base image and can modify its state with standard tools this base image provides.
 Once created, the image can be run or pushed to a repository, to be used later. 
